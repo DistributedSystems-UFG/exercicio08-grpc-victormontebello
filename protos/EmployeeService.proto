@@ -14,10 +14,14 @@ service EmployeeService {
   rpc GetEmployeeDataFromID (EmployeeID) returns (EmployeeData) {}
   // Update an employee´s title/position
   rpc UpdateEmployeeTitle (EmployeeTitleUpdate) returns (StatusReply) {}
+  // Update an employee´s name
+  rpc UpdateEmployeeName (EmployeeNameUpdate) returns (StatusReply) {}
   // Delete an employee
   rpc DeleteEmployee (EmployeeID) returns (StatusReply) {}
   // List all employees
   rpc ListAllEmployees (EmptyMessage) returns (EmployeeDataList) {}
+  // List employees by title/position
+  rpc GetEmployeesByTitle (EmployeeTitleFilter) returns (EmployeeDataList) {}
   
 }
 
@@ -38,6 +42,15 @@ message EmployeeID {
 message EmployeeTitleUpdate {
   uint32 id = 1;
   string title = 2;
+}
+
+message EmployeeNameUpdate {
+  uint32 id = 1;
+  string name = 2;
+}
+
+message EmployeeTitleFilter {
+  string title = 1;
 }
 
 message EmptyMessage{}
